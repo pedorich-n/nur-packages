@@ -196,37 +196,39 @@ in
           ReadWritePaths = cfg.dataDir;
 
           # Hardening
-          DynamicUser = true;
           CapabilityBoundingSet = "";
-          NoNewPrivileges = true;
+          DynamicUser = true;
           LockPersonality = true;
+          MemoryDenyWriteExecute = true;
+          NoNewPrivileges = true;
           PrivateDevices = true;
           PrivateTmp = true;
-          ProtectHome = true;
           PrivateUsers = true;
-          ProtectSystem = "strict";
-          ProtectKernelTunables = true;
-          ProtectKernelModules = true;
-          ProtectKernelLogs = true;
-          ProtectControlGroups = true;
           ProtectClock = true;
-          RestrictSUIDSGID = true;
-          RestrictRealtime = true;
+          ProtectControlGroups = true;
+          ProtectHome = true;
           ProtectHostname = true;
+          ProtectKernelLogs = true;
+          ProtectKernelModules = true;
+          ProtectKernelTunables = true;
           ProtectProc = "invisible";
-          MemoryDenyWriteExecute = true;
+          ProtectSystem = "strict";
+          RemoveIPC = true;
+          RestrictAddressFamilies = [
+            "AF_INET"
+            "AF_INET6"
+            "AF_UNIX"
+          ];
           RestrictNamespaces = true;
+          RestrictRealtime = true;
+          RestrictSUIDSGID = true;
           SystemCallArchitectures = "native";
           SystemCallFilter = [
             "@system-service"
             "@chown"
+            "~@privileged"
           ];
-
-          RestrictAddressFamilies = [
-            "AF_UNIX"
-            "AF_INET"
-            "AF_INET6"
-          ];
+          UMask = "0077"; # 600 for files, 700 for dirs
         };
 
         unitConfig.RequiresMountsFor = [ cfg.dataDir ];
