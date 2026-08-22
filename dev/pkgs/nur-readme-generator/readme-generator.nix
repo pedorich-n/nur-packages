@@ -83,7 +83,7 @@ writers.writePython3Bin "nur-readme-generator"
         parser.add_argument("--dry-run", action="store_true")
         args = parser.parse_args()
 
-        data = json.loads(Path(args.meta_json).read_text())
+        data = json.loads(Path(args.meta).read_text())
 
         section = render_section(data)
 
