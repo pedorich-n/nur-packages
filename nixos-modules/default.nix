@@ -3,5 +3,5 @@
   #
   # my-module = ./my-module;
 
-  rustic-exrpoter = ./rustic-exporter;
+  rustic-exporter = ./rustic-exporter;
 }
