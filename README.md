@@ -6,8 +6,10 @@
 
 [![Cachix Cache](https://img.shields.io/badge/cachix-pedorich--n--nur-blue.svg)](https://pedorich-n-nur.cachix.org)
 
+<!-- BEGIN GENERATED -->
 
+<!-- END GENERATED -->
 
 ## TODO:
 
- - [ ] [Add repo to NUR](https://github.com/nix-community/NUR#how-to-add-your-own-repository)
+- [ ] [Add repo to NUR](https://github.com/nix-community/NUR#how-to-add-your-own-repository)
