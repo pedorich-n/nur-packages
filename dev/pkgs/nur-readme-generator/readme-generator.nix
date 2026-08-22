@@ -23,7 +23,7 @@ writers.writePython3Bin "nur-readme-generator"
         lines = [SENTINEL_BEGIN, "", "## What this NUR provides", ""]
 
         # --- Packages ---
-        lines.append("### Packages")
+        lines.append("### Packages (and overlays)")
         lines.append("")
         packages: list = data.get("packages", [])
         if packages:
