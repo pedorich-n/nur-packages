@@ -80,9 +80,11 @@ in
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
-        ExecStart = lib.escapeShellArgs (
-          [ (lib.getExe cfg.package) ] ++ (lib.cli.toCommandLineGNU { } (cfg.arguments // { config = "%d/config.toml"; }))
-        );
+        ExecStart =
+          let
+            args = lib.cli.toCommandLineGNU { } (cfg.arguments // { config = "%d/config.toml"; });
+          in
+          "${lib.getExe cfg.package} ${lib.concatStringsSep " " args}";
         LoadCredential = [
           "config.toml:${cfg.configFile}"
         ];
