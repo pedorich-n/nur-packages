@@ -23,6 +23,7 @@
 
   example-package = pkgs.callPackage ./pkgs/example-package { };
   rustic-exporter = pkgs.callPackage ./pkgs/rustic-exporter { };
+  safebucket = pkgs.callPackage ./pkgs/safebucket { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
