@@ -22,7 +22,3 @@
 - `safebucket`
 
 <!-- END GENERATED -->
-
-## TODO:
-
-- [ ] [Add repo to NUR](https://github.com/nix-community/NUR#how-to-add-your-own-repository)
