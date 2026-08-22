@@ -41,9 +41,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
     - name: Install nix
-      uses: cachix/install-nix-action@v31
+      uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
       with:
         nix_path: "${{ matrix.nixPath }}"
         extra_nix_config: |
@@ -52,7 +52,7 @@ jobs:
     - name: Show nixpkgs version
       run: nix-instantiate --eval -E '(import <nixpkgs> {}).lib.version'
     - name: Setup cachix
-      uses: cachix/cachix-action@v17
+      uses: cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71 # v17
       # Don't replace <YOUR_CACHIX_NAME> here!
       if: ${{ matrix.cachixName != '<YOUR_CACHIX_NAME>' }}
       with:
