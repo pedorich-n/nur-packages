@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.custom.services.safebucket;
+  cfg = config.services.safebucket;
 in
 {
   options = {
@@ -29,7 +29,7 @@ in
       openFirewall = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Whether to open the firewall for safebucket.";
+        description = "Whether to open the firewall for Safebucket.";
       };
 
       environment = lib.mkOption {
@@ -179,56 +179,66 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    systemd.services.safebucket = {
-      description = "Safebucket service";
-      wantedBy = [ "multi-user.target" ];
+    systemd = {
+      services.safebucket = {
+        description = "Safebucket service";
+        wantedBy = [ "multi-user.target" ];
 
-      environment = lib.mapAttrs (_: val: if lib.isBool val then lib.boolToString val else toString val) cfg.environment;
+        environment = lib.mapAttrs (_: val: if lib.isBool val then lib.boolToString val else toString val) cfg.environment;
 
-      serviceConfig = {
-        ExecStart = lib.getExe cfg.package;
-        Restart = "on-failure";
-        StateDirectory = "safebucket";
-        StateDirectoryMode = "0750";
-        EnvironmentFile = cfg.environmentFiles;
+        serviceConfig = {
+          ExecStart = lib.getExe cfg.package;
+          Restart = "on-failure";
+          StateDirectory = "safebucket";
+          StateDirectoryMode = "0750";
+          EnvironmentFile = cfg.environmentFiles;
 
-        ReadWritePaths = cfg.dataDir;
+          ReadWritePaths = cfg.dataDir;
 
-        # Hardening
-        DynamicUser = true;
-        CapabilityBoundingSet = "";
-        NoNewPrivileges = true;
-        LockPersonality = true;
-        PrivateDevices = true;
-        PrivateTmp = true;
-        ProtectHome = true;
-        PrivateUsers = true;
-        ProtectSystem = "strict";
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-        ProtectKernelLogs = true;
-        ProtectControlGroups = true;
-        ProtectClock = true;
-        RestrictSUIDSGID = true;
-        RestrictRealtime = true;
-        ProtectHostname = true;
-        ProtectProc = "invisible";
-        MemoryDenyWriteExecute = true;
-        RestrictNamespaces = true;
-        SystemCallArchitectures = "native";
-        SystemCallFilter = [
-          "@system-service"
-          "@chown"
-        ];
+          # Hardening
+          DynamicUser = true;
+          CapabilityBoundingSet = "";
+          NoNewPrivileges = true;
+          LockPersonality = true;
+          PrivateDevices = true;
+          PrivateTmp = true;
+          ProtectHome = true;
+          PrivateUsers = true;
+          ProtectSystem = "strict";
+          ProtectKernelTunables = true;
+          ProtectKernelModules = true;
+          ProtectKernelLogs = true;
+          ProtectControlGroups = true;
+          ProtectClock = true;
+          RestrictSUIDSGID = true;
+          RestrictRealtime = true;
+          ProtectHostname = true;
+          ProtectProc = "invisible";
+          MemoryDenyWriteExecute = true;
+          RestrictNamespaces = true;
+          SystemCallArchitectures = "native";
+          SystemCallFilter = [
+            "@system-service"
+            "@chown"
+          ];
 
-        RestrictAddressFamilies = [
-          "AF_UNIX"
-          "AF_INET"
-          "AF_INET6"
-        ];
+          RestrictAddressFamilies = [
+            "AF_UNIX"
+            "AF_INET"
+            "AF_INET6"
+          ];
+        };
+
+        unitConfig.RequiresMountsFor = [ cfg.dataDir ];
       };
+    };
 
-      unitConfig.RequiresMountsFor = [ cfg.dataDir ];
+    tmpfiles.settings."10-safebucket" = {
+      "${cfg.dataDir}".d = {
+        user = "-";
+        group = "-";
+        argument = "0700";
+      };
     };
 
     networking.firewall = lib.mkIf cfg.openFirewall {
