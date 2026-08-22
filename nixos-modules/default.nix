@@ -4,4 +4,5 @@
   # my-module = ./my-module;
 
   rustic-exporter = ./rustic-exporter;
+  safebucket = ./safebucket;
 }
