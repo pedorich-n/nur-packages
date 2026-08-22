@@ -12,6 +12,7 @@
 
 ### Packages (and overlays)
 
+- **[error-pages](https://tarampampam.github.io/error-pages)** `4.2.4` — Static error pages generator for HTTP servers
 - **[rustic-exporter](https://github.com/timtorChen/rustic-exporter)** `0.1.0-rc.12` — Prometheus exporter for rustic/restic backup
 - **[safebucket](https://github.com/safebucket/safebucket)** `0.7.2` — On-prem file sharing made simple, fast and safe.
 
