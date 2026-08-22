@@ -23,4 +23,5 @@
 
   rustic-exporter = pkgs.callPackage ./pkgs/rustic-exporter { };
   safebucket = pkgs.callPackage ./pkgs/safebucket { };
+  error-pages = pkgs.callPackage ./pkgs/error-pages { };
 }
