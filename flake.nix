@@ -13,25 +13,7 @@
       {
         systems = lib.systems.flakeExposed;
 
-        perSystem =
-          {
-            config,
-            pkgs,
-            lib,
-            ...
-          }:
-          {
-            legacyPackages = import ./default.nix { inherit pkgs; };
-
-            packages = lib.filterAttrs (_: v: lib.isDerivation v) config.legacyPackages;
-          };
-
-        flake = {
-          nixosModules = import ./nixos-modules;
-          # homeModules = import ./home-modules;
-          # darwinModules = import ./darwin-modules;
-          # flakeModules = import ./flake-modules;
-        };
+        imports = lib.filesystem.listFilesRecursive ./flake-parts;
       }
     );
 }
