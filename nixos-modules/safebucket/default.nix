@@ -61,7 +61,7 @@ in
             DATABASE__TYPE = lib.mkOption {
               type = lib.types.str;
               default = "sqlite";
-              descriptions = ''
+              description = ''
                 Database type which Safebucket will use.
                 See <https://docs.safebucket.io/configuration/database-providers> for more information.
               '';
@@ -231,13 +231,13 @@ in
 
         unitConfig.RequiresMountsFor = [ cfg.dataDir ];
       };
-    };
 
-    tmpfiles.settings."10-safebucket" = {
-      "${cfg.dataDir}".d = {
-        user = "-";
-        group = "-";
-        argument = "0700";
+      tmpfiles.settings."10-safebucket" = {
+        "${cfg.dataDir}".d = {
+          user = "-";
+          group = "-";
+          argument = "0700";
+        };
       };
     };
 
