@@ -10,7 +10,12 @@
 {
   pkgs ? import <nixpkgs> { },
 }:
-
+let
+  packages = import ./packages.nix {
+    inherit pkgs;
+    inherit (pkgs) lib;
+  };
+in
 {
   # The `lib`, `overlays`, `nixosModules`, `homeModules`,
   # `darwinModules` and `flakeModules` names are special
@@ -19,9 +24,6 @@
   # homeModules = { }; # Home Manager modules
   # darwinModules = { }; # nix-darwin modules
   # flakeModules = { }; # flake-parts modules
-  overlays = import ./overlays; # nixpkgs overlays
-
-  rustic-exporter = pkgs.callPackage ./pkgs/rustic-exporter { };
-  safebucket = pkgs.callPackage ./pkgs/safebucket { };
-  error-pages = pkgs.callPackage ./pkgs/error-pages { };
+  overlays = import ./overlays;
 }
+// packages
