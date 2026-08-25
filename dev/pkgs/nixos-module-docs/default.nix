@@ -4,6 +4,9 @@
   nixosModules ? [ ],
   rev ? "main",
 }:
+let
+  repo = "https://github.com/pedorich-n/nur-packages";
+in
 ndg-builder.override {
   title = "NUR";
   inputDir = ../../../docs;
@@ -14,10 +17,10 @@ ndg-builder.override {
   rawModules = nixosModules;
   moduleName = "pedorich-n/nur-packages/nixos-modules";
   basePath = ../../../nixos-modules;
-  repoPath = "https://github.com/pedorich-n/nur-packages/blob/${rev}/nixos-modules";
+  repoPath = "${repo}/blob/${rev}/nixos-modules";
 
   extraConfig = {
-    footer_text = ''Generated with <a href="https://github.com/feel-co/ndg">ndg</a> | Commit: ${rev}'';
+    footer_text = ''Generated with <a href="https://github.com/feel-co/ndg">ndg</a> | Source commit: <a href="${repo}/commit/${rev}">${rev}</a>'';
     sidebar = {
       ordering = "alphabetical";
       options = {
