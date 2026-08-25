@@ -22,6 +22,12 @@ jobs:
         with:
           git_https_token: ${{ steps.app_auth.outputs.token }}
 
+      - name: Set NIX_PATH to this flake's nixpkgs input
+        shell: bash
+        run: |
+          nixpkgs_path="$(nix flake archive --json . | jq -r '.inputs.nixpkgs.path')"
+          echo "NIX_PATH=nixpkgs=$nixpkgs_path" >> "$GITHUB_ENV"
+
       - name: Get packages list
         id: get_packages
         run: |
@@ -30,12 +36,6 @@ jobs:
             nix eval --json .#nixUpdatePackages | jq -r '.[]'
             echo EOF
           } >> "$GITHUB_OUTPUT"
-
-      - name: Set NIX_PATH to this flake's nixpkgs input
-        shell: bash
-        run: |
-          nixpkgs_path="$(nix flake archive --json . | jq -r '.inputs.nixpkgs.path')"
-          echo "NIX_PATH=nixpkgs=$nixpkgs_path" >> "$GITHUB_ENV"
 
       - name: Run nix-update
         id: nix_update
