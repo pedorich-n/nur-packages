@@ -7,16 +7,16 @@
 }:
 buildGoModule (finalAttrs: {
   pname = "safebucket";
-  version = "0.7.2";
+  version = "0.7.3";
 
   src = fetchFromGitHub {
     owner = "safebucket";
     repo = "safebucket";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-3If5AB11XjDZTTKo3fD/7tL2B8mJ1WPLjs99D6VgDic=";
+    hash = "sha256-0p+MfInb9dfKp5MuEJdKKNCvNO3nv1uaNDKrC6XnrwU=";
   };
 
-  vendorHash = "sha256-ECt253rRthcknYx2RQ+U9pyRbuGG0kIzHlrdUyxeK3k=";
+  vendorHash = "sha256-3qK7bNlhpOCcEl1qCG63ZkU/GgEN+/q8qPBi8MoRU6w=";
 
   strictDeps = true;
   __structuredAttrs = true;
@@ -50,7 +50,7 @@ buildGoModule (finalAttrs: {
 
       sourceRoot = "${finalAttrs.src.name}/web";
 
-      npmDepsHash = "sha256-289QPGVgf9W5fZztdC/9zxlV/L6uX607AbpldBnaSj0=";
+      npmDepsHash = "sha256-bv+AiReYPCxpNVYASLjZzdO04W2FXoOqhKsECrYwRV0=";
 
       installPhase = ''
         runHook preInstall
