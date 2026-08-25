@@ -2,9 +2,10 @@
   pkgs,
   ndg-builder,
   nixosModules ? [ ],
+  rev ? "main",
 }:
 ndg-builder.override {
-  title = "Custom NixOS Modules";
+  title = "NUR";
   inputDir = ../../../docs;
   generateSearch = true;
   highlightCode = true;
@@ -13,17 +14,20 @@ ndg-builder.override {
   rawModules = nixosModules;
   moduleName = "pedorich-n/nur-packages/nixos-modules";
   basePath = ../../../nixos-modules;
-  repoPath = "https://github.com/pedorich-n/nur-packages/blob/main/nixos-modules";
+  repoPath = "https://github.com/pedorich-n/nur-packages/blob/${rev}/nixos-modules";
 
   extraConfig = {
+    footer_text = ''Generated with <a href="https://github.com/feel-co/ndg">ndg</a> | Commit: ${rev}'';
     sidebar = {
-      nested = true;
       ordering = "alphabetical";
+      options = {
+        depth = 2;
+        nested = true;
+      };
     };
     stylesheet_paths = [
       ../../../docs/assets/custom.css
     ];
-    # template_dir = ../../../docs/templates;
   };
 
   checkModules = false;

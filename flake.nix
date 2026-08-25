@@ -27,6 +27,8 @@
         systems = lib.systems.flakeExposed;
 
         imports = lib.filesystem.listFilesRecursive ./flake-parts;
+
+        debug = true;
       }
     );
 }
