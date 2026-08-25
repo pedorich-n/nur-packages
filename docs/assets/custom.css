@@ -1,0 +1,4 @@
+.content {
+  /* The default is 800px and it's not enough */
+  max-width: 1200px;
+}

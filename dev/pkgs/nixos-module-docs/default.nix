@@ -5,6 +5,7 @@
 }:
 ndg-builder.override {
   title = "Custom NixOS Modules";
+  inputDir = ../../../docs;
   generateSearch = true;
   highlightCode = true;
   optionsDepth = 2;
@@ -19,6 +20,10 @@ ndg-builder.override {
       nested = true;
       ordering = "alphabetical";
     };
+    stylesheet_paths = [
+      ../../../docs/assets/custom.css
+    ];
+    # template_dir = ../../../docs/templates;
   };
 
   checkModules = false;
