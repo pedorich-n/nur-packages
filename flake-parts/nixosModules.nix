@@ -1,5 +1,11 @@
 {
+  self,
+  ...
+}:
+{
   flake = {
-    nixosModules = import ../nixos-modules;
+    nixosModules = self.lib.modulesFromDirectoryRecursive {
+      directory = ../nixos-modules;
+    };
   };
 }
