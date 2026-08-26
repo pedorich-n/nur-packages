@@ -11,7 +11,7 @@
   pkgs ? import <nixpkgs> { },
 }:
 {
-  lib = import ./lib { inherit pkgs; };
+  lib = import ./lib { inherit (pkgs) lib; };
   overlays = import ./overlays;
   # Can't use `lib.modulesFromDirectoryRecursive` here because that would require `pkgs.lib`,
   # and NUR doesn't provide `pkgs` when evaluating this file. So we have to manually list the modules here.

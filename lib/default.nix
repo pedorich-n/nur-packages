@@ -1,7 +1,6 @@
 {
-  pkgs ? import <nixpkgs> { },
+  lib
 }:
-with pkgs.lib;
 {
 
   modulesFromDirectoryRecursive =
