@@ -21,7 +21,7 @@ rec {
   # `darwinModules` and `flakeModules` names are special
   lib = import ./lib { inherit (pkgs) lib; }; # functions
   nixosModules = lib.modulesFromDirectoryRecursive {
-    directory = ./nixos-modules;
+    directory = ./modules/nixos;
   }; # NixOS modules
   # homeModules = { }; # Home Manager modules
   # darwinModules = { }; # nix-darwin modules

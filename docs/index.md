@@ -67,7 +67,7 @@ Then apply the overlay in your NixOS configuration:
 }
 ```
 
-### NixOS modules (Using Flakes) {#index-usage-nixos-modules}
+### NixOS modules (Using Flakes) {#index-usage-modules-nixos}
 
 Include NUR in your `flake.nix`:
 

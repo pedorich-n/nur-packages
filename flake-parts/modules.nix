@@ -10,7 +10,7 @@
 
   flake.modules = {
     nixos = self.lib.modulesFromDirectoryRecursive {
-      directory = ../nixos-modules;
+      directory = ../modules/nixos;
     };
   };
 }
