@@ -90,7 +90,7 @@ Pass the modules you want to use to the `nixosSystem` builder:
 nixpkgs.lib.nixosSystem {
   modules = [
     ./configuration.nix
-    nur.packages.pedorich-n.nixosModules.<module-name>
+    nur.repos.pedorich-n.modules.nixos.<module-name>
   ];
   ...
 }
