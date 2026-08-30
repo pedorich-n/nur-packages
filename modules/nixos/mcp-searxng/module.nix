@@ -12,15 +12,7 @@ in
     services.mcp-searxng = {
       enable = lib.mkEnableOption "mcp-searxng MCP server";
 
-      package = lib.mkPackageOption pkgs "mcp-searxng" {
-        extraDescription = ''
-
-          ::: {.note}
-          `mcp-searxng` is not in nixpkgs.
-          It is available in `bandithedoge`'s NUR repo (<https://nur.nix-community.org/repos/bandithedoge/>).
-          :::
-        '';
-      };
+      package = lib.mkPackageOption pkgs "mcp-searxng" { };
 
       openFirewall = lib.mkOption {
         type = lib.types.bool;
