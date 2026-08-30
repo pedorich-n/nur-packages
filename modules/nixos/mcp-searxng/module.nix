@@ -121,7 +121,6 @@ in
         CapabilityBoundingSet = "";
         DynamicUser = true;
         LockPersonality = true;
-        MemoryDenyWriteExecute = true;
         NoNewPrivileges = true;
         PrivateDevices = true;
         PrivateTmp = true;
