@@ -20,6 +20,7 @@
 
 ### NixOS Modules
 
+- `mcp-searxng`
 - `rustic-exporter`
 - `safebucket`
 
