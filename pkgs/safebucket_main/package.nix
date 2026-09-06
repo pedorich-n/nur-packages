@@ -7,6 +7,7 @@ let
 in
 safebucket.overrideAttrs (
   final: prev: {
+    pname = "safebucket_main";
     version = "0.7.5-unstable-2026-09-03";
     src = pkgs.fetchFromGitHub {
       owner = "safebucket";
