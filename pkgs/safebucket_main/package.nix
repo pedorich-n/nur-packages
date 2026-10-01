@@ -8,15 +8,15 @@ in
 safebucket.overrideAttrs (
   final: prev: {
     pname = "safebucket_main";
-    version = "0.7.5-unstable-2026-09-03";
+    version = "0.7.5-unstable-2026-09-28";
     src = pkgs.fetchFromGitHub {
       owner = "safebucket";
       repo = "safebucket";
-      rev = "2b67f8ad2bcc7c533fe8bc79a7d82ead4ebd411a";
-      sha256 = "sha256-ipQf5s1FnczDAI4gjWsXCWSigQbaUVuzAn5Ccny6Nzw=";
+      rev = "fadc278092772c63d969e61dac72fedbee34ae53";
+      sha256 = "sha256-COWHBODPY4g/B2eSWnPdHeIi7CvmfonPnVesmP7I7r8=";
     };
 
-    vendorHash = "sha256-RvLu7NpSbtdzxOQAQ/Kkx3IcAT6FIXTBNgDIidvsHRM=";
+    vendorHash = "sha256-WKTZTi0mm8uTVOq7RjFapR79ylSF6iHkDtNcjBDhyjU=";
 
     passthru = prev.passthru // {
       updateScript = pkgs.nix-update-script {
