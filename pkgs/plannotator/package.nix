@@ -18,7 +18,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "plannotator";
-  version = "0.28.36";
+  version = "0.28.37";
 
   __structuredAttrs = true;
   strictDeps = true;
@@ -27,7 +27,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "backnotprop";
     repo = "plannotator";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-1YJOwwJYLnHWv5DN5b8Sc0u9MwLmZnjFKLunGTZWNQg=";
+    hash = "sha256-H7NNhenWYrzcDfF5CKtVsmvE3E5cCmPJswRhPcsM7bk=";
   };
 
   nodeModules = stdenv.mkDerivation {
@@ -70,7 +70,7 @@ stdenv.mkDerivation (finalAttrs: {
     dontFixup = true;
 
     outputHashMode = "recursive";
-    outputHash = "sha256-SvGuwFOoLWW3nucwBnmdmxNWvyIYnVtQRs7/t15vuy4=";
+    outputHash = "sha256-NGY+ffqCZIAx4sYWYzV39QyDz1mZsSMOD6AmER8TMJ4=";
   };
 
   nativeBuildInputs = [
