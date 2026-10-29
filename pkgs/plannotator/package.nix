@@ -1,12 +1,11 @@
 {
   lib,
   stdenv,
-  bun,
+  pkgs,
   fetchFromGitHub,
   jj,
   git,
   gh,
-  gitbutler,
   glab,
   makeWrapper,
   nix-update-script,
@@ -14,6 +13,9 @@
   versionCheckHook,
   writableTmpDirAsHomeHook,
 }:
+let
+  bun = (import ../../overlays/bun.nix pkgs pkgs).bun;
+in
 stdenv.mkDerivation (finalAttrs: {
   pname = "plannotator";
   version = "0.28.36";
@@ -125,7 +127,6 @@ stdenv.mkDerivation (finalAttrs: {
         lib.makeBinPath [
           jj
           git
-          gitbutler
           gh
           glab
         ]
@@ -163,5 +164,6 @@ stdenv.mkDerivation (finalAttrs: {
       fromSource
     ];
     mainProgram = "plannotator";
+    broken = lib.versionOlder (lib.getVersion bun) "1.4.4";
   };
 })

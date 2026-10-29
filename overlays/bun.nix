@@ -29,22 +29,26 @@ let
   url = source: "https://github.com/oven-sh/bun/releases/download/bun-v${bunVersion}/${source.file}";
 in
 {
-  bun = prev.bun.overrideAttrs (old: {
-    version = bunVersion;
+  bun =
+    if lib.versionAtLeast (lib.getVersion prev.bun) bunVersion then
+      prev.bun
+    else
+      prev.bun.overrideAttrs (old: {
+        version = bunVersion;
 
-    src = final.fetchurl {
-      url = url release;
-      hash = release.hash;
-    };
+        src = final.fetchurl {
+          url = url release;
+          hash = release.hash;
+        };
 
-    passthru = old.passthru // {
-      sources = lib.mapAttrs (
-        _: source:
-        final.fetchurl {
-          url = url source;
-          hash = source.hash;
-        }
-      ) releases;
-    };
-  });
+        passthru = (builtins.removeAttrs old.passthru [ "updateScript" ]) // {
+          sources = lib.mapAttrs (
+            _: source:
+            final.fetchurl {
+              url = url source;
+              hash = source.hash;
+            }
+          ) releases;
+        };
+      });
 }
