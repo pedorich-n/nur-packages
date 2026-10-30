@@ -18,7 +18,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "plannotator";
-  version = "0.28.37";
+  version = "0.28.38";
 
   __structuredAttrs = true;
   strictDeps = true;
@@ -27,7 +27,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "backnotprop";
     repo = "plannotator";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-H7NNhenWYrzcDfF5CKtVsmvE3E5cCmPJswRhPcsM7bk=";
+    hash = "sha256-Ui3oYYmP23U0o67lwxXeiutvIaOTy3XlqeuIfknJz7Y=";
   };
 
   nodeModules = stdenv.mkDerivation {
@@ -70,7 +70,7 @@ stdenv.mkDerivation (finalAttrs: {
     dontFixup = true;
 
     outputHashMode = "recursive";
-    outputHash = "sha256-NGY+ffqCZIAx4sYWYzV39QyDz1mZsSMOD6AmER8TMJ4=";
+    outputHash = "sha256-iE1Wyn8Up0mC0OoAlOJoXBEU3WpONNwu7JcVG1KbdhU=";
   };
 
   nativeBuildInputs = [
@@ -96,6 +96,7 @@ stdenv.mkDerivation (finalAttrs: {
 
     export BUN_INSTALL_CACHE_DIR=$(mktemp -d)
 
+    bun apps/guides-show/build/sync-manifest.ts --if-missing
     bun scripts/require-bun.ts
 
     bun run build:review
