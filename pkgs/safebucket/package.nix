@@ -51,7 +51,7 @@ buildGo127Module (finalAttrs: {
 
       sourceRoot = "${finalAttrs.src.name}/web";
 
-      npmDepsHash = "sha256-F0pu3mQpGARBnx/OJm7R8FgOLg/w2fel+xjTrXwn8z4=";
+      npmDepsHash = "sha256-tJF3N7ao4dwyg7fL6HSAUomW3u1TpnVcqPuxPzNrL1M=";
 
       installPhase = ''
         runHook preInstall
