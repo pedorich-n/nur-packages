@@ -50,10 +50,16 @@ stdenv.mkDerivation (finalAttrs: {
       runHook preBuild
 
       export BUN_INSTALL_CACHE_DIR=$(mktemp -d)
+
       bun install \
+        --backend=copyfile \
+        --cpu='*' \
         --frozen-lockfile \
         --ignore-scripts \
-        --no-progress
+        --libc='*' \
+        --linker=hoisted \
+        --no-progress \
+        --os='*'
 
       runHook postBuild
     '';
@@ -70,7 +76,7 @@ stdenv.mkDerivation (finalAttrs: {
     dontFixup = true;
 
     outputHashMode = "recursive";
-    outputHash = "sha256-7uUqU+dK2I3TqTXE+JMseZZ7vuoGR/OCuyLhEQF0UcQ=";
+    outputHash = "sha256-hZhpsBWYdmhVVMLRwWzXAMm55bUeZqyrXM24nHpYdas=";
   };
 
   nativeBuildInputs = [
