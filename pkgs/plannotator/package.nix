@@ -56,7 +56,7 @@ stdenv.mkDerivation (finalAttrs: {
         --libc='*' \
         --linker=hoisted \
         --no-progress \
-        --os='*'
+        --os=linux
 
       runHook postBuild
     '';
@@ -73,7 +73,7 @@ stdenv.mkDerivation (finalAttrs: {
     dontFixup = true;
 
     outputHashMode = "recursive";
-    outputHash = "sha256-N+E7Uh1+KdbxgM50DjIHlMosxIEIpI1cFsDQEc134m8=";
+    outputHash = "sha256-ReJMFnI9L7tAfHGxcwaM6QBn8eez6dwdrlHI04bx0f8=";
   };
 
   nativeBuildInputs = [
@@ -163,7 +163,7 @@ stdenv.mkDerivation (finalAttrs: {
       asl20
       mit
     ];
-    platforms = lib.platforms.unix;
+    platforms = lib.platforms.linux;
     sourceProvenance = with lib.sourceTypes; [
       fromSource
     ];
